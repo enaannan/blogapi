@@ -1,0 +1,19 @@
+{
+  "name": "blogapi",
+  "version": "1.0.0",
+  "description": "An api for bloggers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enaannan/blogapi.git"
+  },
+  "author": "annane",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enaannan/blogapi/issues"
+  },
+  "homepage": "https://github.com/enaannan/blogapi#readme"
+}
