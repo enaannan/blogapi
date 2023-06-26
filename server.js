@@ -1,7 +1,10 @@
 require('dotenv').config()
-const db = require("./models/index.js")
-const express = require("express")
 
+require("./DB/db.connection");
+
+require("./models/sync.js")
+
+const express = require("express")
 const app = express()
 
 app.use(express.json())

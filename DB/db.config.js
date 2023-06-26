@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+require('sequelize');
 
 module.exports = {
     host: process.env.DB_HOST,
