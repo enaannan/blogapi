@@ -12,7 +12,7 @@ function schemaFromModel(Model){
         if (! attributesToIgnore.includes(attributeKey)){
             schema[attributeKey]={
                 in:['body'],
-                notEmpty: (attributeKey === 'id')?true: attributes[attributeKey].allowNull,
+                notEmpty: (attributeKey === 'id')?true: !attributes[attributeKey].allowNull,
                 errorMessage: `${attributeKey} is required.`
             }
         }
