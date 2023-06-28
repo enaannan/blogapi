@@ -3,11 +3,20 @@ require("./BlogPost")
 require("./User")
 require("./BlogPostCategory")
 require("./Category")
-require("./Tag")
+const tag = require("./Tag")
 require("./BlogPostTag")
 try{
+
 sequelize.sync({ alter: true }).then(() => {
-    console.log("All models were synchronized successfully");
 });} catch (error) {
         console.error('Error synchronizing tables:', error);
     }
+
+const {schemaFromModel} = require("../utils/modelUtils")
+
+
+
+// const tagSchema = schemaFromModel(tag);
+// module.export = {tagSchema}
+
+
