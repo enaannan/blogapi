@@ -11,7 +11,11 @@ const sequelize = new Sequelize( dbConfig.database , dbConfig.username , dbConfi
         min:dbConfig.pool.min,
         acquire:dbConfig.pool.acquire,
         idle:dbConfig.pool.idle
-    }
+        },
+    logging: (message) => {
+            // Custom logging function
+            console.log(`[Sequelize] ${message}`);
+        }
 })
 
 module.exports = sequelize;
