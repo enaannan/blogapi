@@ -5,12 +5,12 @@ require("./BlogPostCategory")
 require("./Category")
 const tag = require("./Tag")
 require("./BlogPostTag")
-try{
-
-sequelize.sync({ alter: true }).then(() => {
-});} catch (error) {
-        console.error('Error synchronizing tables:', error);
-    }
+// try{
+//
+// sequelize.sync({ alter: true }).then(() => {
+// });} catch (error) {
+//         console.error('Error synchronizing tables:', error);
+//     }
 
 const {schemaFromModel} = require("../utils/modelUtils")
 
