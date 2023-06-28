@@ -29,7 +29,6 @@ class UserController {
     static async findAll(req,res){
         try{
             const users = await User.findAll();
-        if(!users) return res.status(404).json({message:'There are no users'})
             res.status(201).json(users)
         }catch(error){
             res.status(500).json({message:'Failed to find users' })

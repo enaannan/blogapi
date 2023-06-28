@@ -12,6 +12,7 @@ const sequelize = new Sequelize( dbConfig.database , dbConfig.username , dbConfi
         acquire:dbConfig.pool.acquire,
         idle:dbConfig.pool.idle
         },
+    //todo:delete logging before deploying
     logging: (message) => {
             // Custom logging function
             console.log(`[Sequelize] ${message}`);

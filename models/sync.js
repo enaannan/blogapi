@@ -1,10 +1,12 @@
-const sequelize = require("../DB/db.connection")
+require("../DB/db.connection")
 require("./BlogPost")
 require("./User")
 require("./BlogPostCategory")
 require("./Category")
-const tag = require("./Tag")
+require("./Tag")
 require("./BlogPostTag")
+
+//todo: uncomment before deploying. Commented out to speed up development
 // try{
 //
 // sequelize.sync({ alter: true }).then(() => {
@@ -12,11 +14,6 @@ require("./BlogPostTag")
 //         console.error('Error synchronizing tables:', error);
 //     }
 
-const {schemaFromModel} = require("../utils/modelUtils")
 
-
-
-// const tagSchema = schemaFromModel(tag);
-// module.export = {tagSchema}
 
 
