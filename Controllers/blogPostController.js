@@ -1,5 +1,4 @@
 const BlogPost = require('../models/BlogPost');
-const {validationResult} = require("express-validator");
 
 const {checkValidationErrors} = require("../utils/utils");
 

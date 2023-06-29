@@ -4,21 +4,18 @@ const router = express.Router();
 const {checkSchema} = require("express-validator");
 const {schemaFromModel} = require("../utils/modelUtils");
 
-const UserController = require("../Controllers/userController");
-const user = require("../models/User");
+const categoryController = require("../Controllers/categoryController");
+const tag = require("../models/Tag");
 
-const userValidationSchema = schemaFromModel(user);
+const tagValidationSchema = schemaFromModel(tag);
 
-//todo: generate these from the backend
-//todo: implement third party login for authentication
-delete userValidationSchema.id
-delete userValidationSchema.salt
+delete tagValidationSchema.id
 
-router.post('/', checkSchema(userValidationSchema), UserController.createUser);
-router.get('/:id', UserController.findOne);
-router.get('/', UserController.findAll);
-router.put('/:id', checkSchema(userValidationSchema), UserController.update);
-router.delete('/:id', checkSchema(userValidationSchema), UserController.deleteById);
-router.delete('/', checkSchema(userValidationSchema), UserController.deleteAll);
+router.post('/', checkSchema(tagValidationSchema), categoryController.createCategory);
+router.get('/:id', categoryController.findOne);
+router.get('/', categoryController.findAll);
+router.put('/:id', checkSchema(tagValidationSchema), categoryController.update);
+router.delete('/:id', checkSchema(tagValidationSchema), categoryController.deleteById);
+router.delete('/', checkSchema(tagValidationSchema), categoryController.deleteAll);
 
 module.exports = router;
