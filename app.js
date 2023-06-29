@@ -10,6 +10,7 @@ app.use(express.urlencoded({extended: true}))
 require("./models/sync.js")
 
 const userRoutes = require("./routes/userRoutes")
+const blogPostRoutes = require("./routes/blogPostRoutes")
 
 const tag = require("./models/Tag")
 
@@ -25,6 +26,8 @@ app.get('/',(req,res)=>{
 
 
 app.use('/user',userRoutes);
+app.use('/blogPost',blogPostRoutes);
+
 
 app.post('/tags',checkSchema(tagValidationSchema), (req, res) => {
     const errors = validationResult(req);
