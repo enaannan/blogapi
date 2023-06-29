@@ -1,18 +1,10 @@
 const User = require('../models/User');
-const {validationResult} = require("express-validator");
+const {checkValidationErrors} = require("../utils/utils");
 
 class UserController {
-    static checkValidationErrors(req,res){
-
-        const errors = validationResult(req);
-
-        if (!errors.isEmpty()) {
-            return res.status(400).json({errors: errors.array()});
-        }
-    }
 
     static async createUser(req, res) {
-        UserController.checkValidationErrors(req,res);
+        checkValidationErrors(req,res);
         try {
             const userData = {...req.body};
             const existingUser = await User.findOne({where:{email:userData.email}})

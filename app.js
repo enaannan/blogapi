@@ -11,6 +11,8 @@ require("./models/sync.js")
 
 const userRoutes = require("./routes/userRoutes")
 const blogPostRoutes = require("./routes/blogPostRoutes")
+const tagsRoutes = require("./routes/tagRoutes")
+const categoryRoutes = require("./routes/categoryRoutes")
 
 const tag = require("./models/Tag")
 
@@ -21,12 +23,14 @@ const tagValidationSchema = schemaFromModel(tag);
 
 
 app.get('/',(req,res)=>{
-    res.json({message: "Hello from simple server"})
+    res.json({message: "Health Check"})
 })
 
 
 app.use('/user',userRoutes);
 app.use('/blogPost',blogPostRoutes);
+app.use('/tag',tagsRoutes);
+app.use('/category',categoryRoutes);
 
 
 app.post('/tags',checkSchema(tagValidationSchema), (req, res) => {
