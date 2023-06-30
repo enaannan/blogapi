@@ -14,10 +14,10 @@ delete userValidationSchema.id
 
 router.post('/auth', checkSchema(userValidationSchema), userController.authenticateUser);
 router.post('/', checkSchema(userValidationSchema), userController.createUser);
-router.get('/:id', userController.findOne);
+router.get('/:id',authMiddleWare, userController.findOne);
 router.get('/',authMiddleWare,userController.findAll);
-router.put('/:id', checkSchema(userValidationSchema), userController.update);
-router.delete('/:id', checkSchema(userValidationSchema), userController.deleteById);
-router.delete('/', checkSchema(userValidationSchema), userController.deleteAll);
+router.put('/:id', authMiddleWare,checkSchema(userValidationSchema), userController.update);
+router.delete('/:id',authMiddleWare, checkSchema(userValidationSchema), userController.deleteById);
+router.delete('/', authMiddleWare, checkSchema(userValidationSchema), userController.deleteAll);
 
 module.exports = router;
