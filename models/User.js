@@ -21,13 +21,9 @@ User.init(
             allowNull: false,
         },
         password: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(60),
             allowNull: false,
-        },
-        salt: {
-            type: DataTypes.STRING(6),
-            allowNull: false,
-        },
+        }
     },
     {sequelize}
 )
