@@ -1,12 +1,45 @@
 const User = require('../models/User');
-const {checkValidationErrors} = require("../utils/utils");
+const {checkValidationErrors,hashPassword, authMiddleWare} = require("../utils/utils");
+const jwt = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
 
 class UserController {
+    static async authenticateUser(req, res) {
+
+        try {
+            const userSigningIn = {...req.body};
+            const user = await User.findOne({where:{email:userSigningIn.email}})
+
+        if (!user) {
+            return res.status(404).json({message:"User not found"});
+        }
+
+       let result = bcrypt.compare(userSigningIn.password, user.password);
+
+        if (!result) {
+            return res.status(404).json({message:"Invalid password"});
+        }
+            const maxAge = 3 * 60 * 60; // 3hrs in sec
+            const token = jwt.sign(
+                { id: user.id },
+                process.env.JWTSECRET,
+                {expiresIn: maxAge, }
+            );
+
+        res.cookie("jwt", token);
+        return res.status(200).json({message:"Sign in successful"});
+
+        }catch (error) {
+            console.log(error);
+            res.status(500).json({message: 'Failed to find user'});
+        }
+    }
 
     static async createUser(req, res) {
         checkValidationErrors(req,res);
         try {
             const userData = {...req.body};
+            userData.password = await hashPassword(userData.password);
             const existingUser = await User.findOne({where:{email:userData.email}})
             if (existingUser) return res.status(404).json({message:"User already exists"})
 
@@ -20,6 +53,7 @@ class UserController {
 
     static async findAll(req,res){
         try{
+
             const users = await User.findAll();
             res.status(200).json(users)
         }catch(error){

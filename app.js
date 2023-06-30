@@ -3,11 +3,14 @@ require("./DB/db.connection");
 
 const express = require("express")
 const app = express()
+const cookieParser = require('cookie-parser');
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(cookieParser());
 
 require("./models/sync.js")
+
 
 const userRoutes = require("./routes/userRoutes")
 const blogPostRoutes = require("./routes/blogPostRoutes")
